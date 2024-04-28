@@ -14,8 +14,7 @@ api = Api(
     description='Con esta API podrá identificar la predicción que puede tener el carro que sea de su interés revisar.'
 )
 
-ns = api.namespace('predicción_ID',
-                   description='Predicción de precios de vehículos')
+ns = api.namespace('predicción_ID', description='Predicción de precios de vehículos')
 
 parametros = api.parser()
 parametros.add_argument(
