@@ -2,13 +2,11 @@ import pandas as pd
 import joblib
 import sys
 import os
+# No necesitas importar ConvertidorDummies aquí porque no lo estás utilizando directamente
 
 def resultado_precio(dataTesting, fila_observacion):
     modelo = joblib.load(os.path.join(os.path.dirname(__file__), 'modelo_prediccion_carros.pkl'))
-    
     data = dataTesting.iloc[[fila_observacion]]
-    
-    
     prediccion_resul = modelo.predict(data)
     return prediccion_resul
 
