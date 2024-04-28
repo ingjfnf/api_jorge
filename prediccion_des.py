@@ -5,12 +5,11 @@ import os
 
 def resultado_precio(dataTesting, fila_observacion):
     modelo = joblib.load(os.path.join(os.path.dirname(__file__), 'modelo_prediccion_carros.pkl'))
-    conversion = joblib.load(os.path.join(os.path.dirname(__file__), 'funcion_conversion_dummies.pkl'))
     
     data = dataTesting.iloc[[fila_observacion]]
-    data_dummie = conversion(data, ['State', 'Make', 'Model'])  # Asegúrate de que estas columnas son correctas
-
-    prediccion_resul = modelo.predict(data_dummie)
+    
+    
+    prediccion_resul = modelo.predict(data)
     return prediccion_resul
 
 if __name__ == "__main__":
