@@ -2,12 +2,13 @@ import pandas as pd
 import joblib
 import sys
 import os
-# No necesitas importar ConvertidorDummies aquí porque no lo estás utilizando directamente
 
 def resultado_precio(dataTesting, fila_observacion):
     modelo = joblib.load(os.path.join(os.path.dirname(__file__), 'modelo_prediccion_carros.pkl'))
-    data = dataTesting.iloc[[fila_observacion]]
-    prediccion_resul = modelo.predict(data)
+    # Asegúrate de que la fila de observación es un DataFrame
+    datos_para_prediccion = dataTesting.iloc[[fila_observacion]]
+    # Realizamos la predicción con el modelo
+    prediccion_resul = modelo.predict(datos_para_prediccion)
     return prediccion_resul
 
 if __name__ == "__main__":
@@ -16,5 +17,5 @@ if __name__ == "__main__":
         print('Proporcione el Código del carro al que desea predecir el precio.')
     else:
         fila_observacion = int(sys.argv[1])
-        resultado_1 = resultado_precio(dataTesting, fila_observacion)
-        print(f'La predicción del precio del carro es: {resultado_1[0]}')
+        resultado = resultado_precio(dataTesting, fila_observacion)
+        print(f'La predicción del precio del carro es: {resultado[0]}')
